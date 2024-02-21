@@ -1,0 +1,44 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("images/C4NdKtRaQE9m8.gif");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+}
+
+.container .nav{
+    display: flex;
+}
+.container .nav .center{
+    position: relative;
+    left: calc(50%-50px);
+
+}
+.container .nav .left{
+    position: relative;
+    left: 50%;
+}
+.navBar{
+    display: flex;
+} 
+
+.navBar ul li{
+    list-style-type: none;
+}
+.navBar ul li a{
+    list-style:none;
+    text-decoration: none;
+    color: black;
+    padding: .5rem 1.5rem;
+    background-color: whitesmoke;
+    text-transform: uppercase;
+}
+.navBar ul li a:hover{
+    background-color: red;
+    color: whitesmoke;
+}
