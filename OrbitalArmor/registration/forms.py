@@ -1,0 +1,21 @@
+from django import forms
+from django.forms import ModelForm
+from .models import CustomUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+
+class RegistrationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username','first_name', 'email', 'phone_number','password' ]
+
+        def cleanData(self):
+            cleaned_data = super(RegistrationForm,self).clean()
+            password = cleaned_data.get('password')
+            password_confirm = cleaned_data.get('password_confirm')
+            
+            if password and password_confirm:
+                if password != password_confirm:
+                    raise forms.ValidationError("The two passwords fields must match")
+            
+            return cleaned_data

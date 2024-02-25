@@ -37,10 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'phonenumber_field',
     
     'dashboard.apps.DashboardConfig',
     'registration.apps.RegistrationConfig',
 ]
+
+AUTH_USER_MODEL = 'registration.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'OrbitalArmor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['registration', 'dashboard'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

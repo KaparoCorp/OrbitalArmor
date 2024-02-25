@@ -5,27 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>Document</title>
+    <title>  {% block title %}Orbital Armor{% endblock title %} </title>
 </head>
 <body>
        <div class="container">
         <div class="nav">
                 <div class="center">
                     <div class="navBar">
-                        <ul><li><a href="">Home</a></li></ul>
-                        <ul><li><a href="">About us</a></li></ul>
-                        <ul><li><a href="">History</a></li></ul>
+                        <ul><li><a href="/">Home</a></li></ul>
+                        <ul><li><a href="/about/">About us</a></li></ul>
+                        <ul><li><a href="/history/">History</a></li></ul>
                     </div>
                 </div> 
                 <div class="left">
                     <div class="navBar">
-                        <ul><li><a href="">sign up</a></li></ul>
-                        <ul><li><a href="">sign in</a></li></ul>
-                        <ul><li><a href="">Under Attack?</a></li></ul>
+                        <ul><li><a href="/register/">sign up</a></li></ul>
+                        <ul><li><a href="/signIn/">sign in</a></li></ul>
+                        <ul><li><a href="">Under Attack ?</a></li></ul>
                     </div>
             </div>
         </div>
     </div>
+
+    {% block content %}{% endblock content %}
     
 </body>
 </html>

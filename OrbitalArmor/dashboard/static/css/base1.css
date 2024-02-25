@@ -1,0 +1,31 @@
+*{
+    padding: 0px;
+    margin: 0px;
+
+}
+
+
+.container ul li{
+    list-style: none;
+    padding: .5rem 1rem;
+}
+
+.container ul li a{
+    list-style: none;
+    text-decoration: none;
+    color:black;
+    background-color: whitesmoke;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    border: 2px solid red;
+}
+
+.container ul li a:hover{
+    background-color: red;
+    color: whitesmoke;
+    border: 2px dashed whitesmoke;
+}
+
+.content:hover{
+    display: block;
+}

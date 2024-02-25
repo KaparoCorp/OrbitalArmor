@@ -21,7 +21,7 @@ body{
 }
 .container .nav .left{
     position: relative;
-    left: 50%;
+    left: 55%;
 }
 .navBar{
     display: flex;
@@ -29,16 +29,20 @@ body{
 
 .navBar ul li{
     list-style-type: none;
+    
 }
+
 .navBar ul li a{
     list-style:none;
     text-decoration: none;
     color: black;
-    padding: .5rem 1.5rem;
+    padding: .5rem 1rem;
     background-color: whitesmoke;
     text-transform: uppercase;
+    border: 2px solid red;
 }
 .navBar ul li a:hover{
     background-color: red;
     color: whitesmoke;
+    border: 2px dashed whitesmoke;
 }

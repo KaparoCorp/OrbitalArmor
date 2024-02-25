@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/base1.css' %} ">
+</head>
+<body>
+    
+    <div class="navBar">
+        <nav>
+            <div class="container">
+                <ul><li><a href="/">Home</a></li></ul>
+                <ul><li><a href="">Real-time traffic</a></li></ul>
+                <ul><li><a href="">Attack Alert</a></li></ul>
+                <ul><li><a href="">Attack Mitigation Controls</a></li></ul>
+                <ul><li><a href="">Historical Data</a></li></ul>
+                <ul><li><a href="">Network Performance Metrics</a></li></ul>
+                <ul><li><a href="">Mitigation Status & Logs</a></li></ul>
+                <ul><li><a href="">Configurations & Settings</a></li></ul>
+                <ul><li><a href="">Intergration with exernal sever</a></li></ul>
+                <ul><li><a href="">User Authentication & AccessControl</a></li></ul>
+                <ul><li><a href="">Help & Documentation</a></li></ul>
+            </div>
+        </nav>
+    </div>
+    <main>
+        <div class="container">
+            <div class="content">
+                {% block body %}{% endblock body %}
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>
