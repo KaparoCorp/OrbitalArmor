@@ -1,18 +1,21 @@
 from django import forms
 from django.forms import ModelForm
 from .models import CustomUser
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username','first_name', 'email', 'phone_number','password' ]
+        widgets = { 'country': CountrySelectWidget}
+        fields = ['username','first_name', 'email', 'phone_number', 'password1', 'country', 'town', 'company', 'position', 'terms']
 
         def cleanData(self):
             cleaned_data = super(RegistrationForm,self).clean()
-            password = cleaned_data.get('password')
-            password_confirm = cleaned_data.get('password_confirm')
+            password = cleaned_data.get('password1')
+            password_confirm = cleaned_data.get('password2')
             
             if password and password_confirm:
                 if password != password_confirm:

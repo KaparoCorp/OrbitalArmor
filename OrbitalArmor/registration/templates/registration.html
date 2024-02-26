@@ -1,4 +1,5 @@
 {% load static %}
+{% load countries %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,27 +10,56 @@
 </head>
 <body>
     <div class="container">
-        <div class="content">
-            <div class="form">
+            <!-- User registration form -->
                 <form method="POST">
-                    {% csrf_token %}
-                    <ul><li> {{ form.error }}</li></ul>
-                    <label for="username">
-                        Username:{{ form.username}}</label>
-                    <label for="first_name">
-                        First Name:{{ form.first_name }}</label>
-                    <label for="email">
-                        Email Address:{{ form.email }}</label>
-                    <label for="phone_number">
-                        Phone Number:{{ form.phone_number }}</label>
-                    <label for="password">
-                        Password:{{ form.password }}</label>
-                    <label for="password_confirm">
-                        Password Confirmation: <input type="password"> </label>
-                    <button type="submit">sign up</button>
+                    
+                    <!-- separate left data and right data -->
+                    <div class="content">
+                        <div class="error">
+                            {{ form.errors }}
+                        </div>
+                    <div class="form">
+                        {% csrf_token %}
+                        
+                        <div class="formData left">
+                            <label for="username">
+                                USERNAME:{{ form.username }}</label>
+                            <label for="frist_name">
+                                FIRST NAME:{{ form.first_name }}</label>
+                            <label for="email">
+                                EMAIL ADDRESS:{{ form.email }}</label>
+                            <label for="phone_number">
+                                PHONE NUMBER: {{ form.phone_number }}</label>
+                            <label for="password">
+                                PASSWORD: {{ form.password1 }} </label>
+                            <label for="password_confirm">
+                                PASSWORD CONFIRM:{{ form.password2}} </label>
+                        </div>
+                        <div class="formData right">
+                            <label for="">
+                                PICK COUNTRY
+                                <select choice={{ form.country}} >
+                                </select>
+                            </label>
+                            <label for="">
+                                TOWN:{{ form.town }}
+                            </label>
+                            <label for="">
+                                COMPANY NAME:{{ form.company }}
+                            </label>
+                            <label for="">
+                                POSITION: {{ form.position }}
+                            </label>
+                            <label for="">
+                                <a href="">confirm terms and conditions</a>
+                                {{form.terms }}
+                        </div>
+                        
+                    </div>
+                    <button class="btn" type="submit">sign up</button>        
+                </div>
                 </form>
-            </div>
-        </div>
     </div>
+    <script src="{% static 'js/registration.js' %}"></script>
 </body>
 </html>

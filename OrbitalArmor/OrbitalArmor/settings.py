@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+#Created APP => dashboard, registration
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,12 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'phonenumber_field',
+    'django_countries',
     
     'dashboard.apps.DashboardConfig',
     'registration.apps.RegistrationConfig',
 ]
 
+# athenticating users using custom user model 
 AUTH_USER_MODEL = 'registration.CustomUser'
+
+# phone_number setting default settings to Kenyan Time using 'KE' as regional name
+PHONENUMBER_DEFAULT_REGION='KE'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

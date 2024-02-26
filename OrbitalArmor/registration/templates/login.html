@@ -10,12 +10,12 @@
 <body>
     <div class="contatiner">
         <div class="formData">
-            <form action="/dashboard/" method="post">
+            <form method="post">
                 {% csrf_token %}
-                <label for="username">USERNAME  <input type="text"></label>
-                <label for="password">PASSWORD <input type="password"></label>
+                <label for="username">USERNAME  <input name="username" type="text"></label>
+                <label for="password">PASSWORD <input name="password" type="password"></label>
                 <a href="">forgot password</a>
-                <button type="submit">LOGIN</button>
+                <button class='btn' type="submit">LOGIN</button>
                 
             </form>
         </div>
