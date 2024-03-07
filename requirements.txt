@@ -1,0 +1,6 @@
+django-countries==4.4.0
+django_phonenumbers==1.0.1
+django-pandas==0.6.6
+pandas==0.14.1
+plotly==5.19.0
+scikit-learn==1.4.0
