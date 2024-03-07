@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'phonenumber_field',
     'django_countries',
+    'django_pandas',
     
     'dashboard.apps.DashboardConfig',
     'registration.apps.RegistrationConfig',

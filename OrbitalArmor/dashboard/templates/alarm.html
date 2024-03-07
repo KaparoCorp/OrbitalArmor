@@ -1,0 +1,25 @@
+{% extends "base1.html" %}
+{% load static %}
+
+{% block headers %}
+<link rel="stylesheet" href="{% static 'css/alarm.css' %} "> 
+{% endblock headers %}
+
+{% block body %}
+<div class="content">
+    <p class="title">ATTACK ALERTS</p>
+    {{ fig|safe }}
+    {{ figProtocol|safe }}
+    {{ durationHist|safe }}
+    {{ transmissionHist|safe }}
+    {{ kbpsHist|safe }}
+
+    <h1> Os Name </h1> {{ os|safe}}
+</div>
+{% endblock body %}
+
+
+
+
+
+

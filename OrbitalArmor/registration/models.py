@@ -7,6 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class CustomUser(AbstractUser):
+    username = models.CharField(name="username",unique=True,blank=False, primary_key=True, max_length=10)
     phone_number = PhoneNumberField(unique=True, blank=False, null=False)
     town = models.CharField(blank=False, max_length=50, name='town', error_messages='Please enter town data...')
     company = models.CharField(blank=False, max_length=50, name='company', error_messages="Company name required...")
