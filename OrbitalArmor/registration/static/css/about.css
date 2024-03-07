@@ -1,0 +1,52 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("images/bg.gif");
+    background-repeat: no-repeat;
+    background-size: 100% ;
+}
+
+.container .nav{
+    display: flex;
+}
+.container .nav .center{
+    position: relative;
+    left: calc(50%-50px);
+
+}
+.container .nav .left{
+    position: relative;
+    left: 55%;
+}
+.navBar{
+    display: flex;
+} 
+
+.navBar ul li{
+    list-style-type: none;
+    
+}
+
+.navBar ul li a{
+    list-style:none;
+    text-decoration: none;
+    color: black;
+    padding: .5rem 1rem;
+    background-color: whitesmoke;
+    text-transform: uppercase;
+    border: 2px solid red;
+}
+.navBar ul li a:hover{
+    background-color: red;
+    color: whitesmoke;
+    border: 2px dashed whitesmoke;
+}
+
+.paragraph{
+    background-color: white;
+}

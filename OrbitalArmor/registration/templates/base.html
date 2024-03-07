@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block link %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock link %}
     <title>  {% block title %}Orbital Armor{% endblock title %} </title>
 </head>
 <body>

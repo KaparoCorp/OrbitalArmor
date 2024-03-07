@@ -5,29 +5,26 @@ from .models import CustomUser
 from django.contrib.auth import authenticate
 
 # Create your views here.
-
+#Home/Landing page View
 class HomePage(View):
     template_name = "home.html"
     def get(self, request):
         context = {}
         return render(request, self.template_name, context)
-    
-class AboutView(TemplateView):
-    template_name = "about.html"
 
-class Historty(TemplateView):
-    template_name = "history.html"
-
+#registration View
 class Registration(View):
     template_name = "registration.html"
     context = {}
 
+    #get request
     def get(self, request):
         context = {}   
         form = RegistrationForm()
         context = {'form': form}
         return render(request, self.template_name, context)
     
+    #post request 
     def post(self, request ):
         form = RegistrationForm(request.POST or None)
         context = {'form': form}
@@ -36,13 +33,17 @@ class Registration(View):
             return redirect('/signIn/')
         return render(request, self.template_name, context)
 
+#sign in view
 class SignIn(View):
     template_name = "login.html"
     users=CustomUser.objects.all()
+    
+    #get request
     def get(self, request):
         context = {}
         return render(request, self.template_name, context)
     
+    #post request
     def post(self, request):
         if request.method == 'POST':
             user_name = request.POST.get('username')
@@ -56,3 +57,21 @@ class SignIn(View):
                 return redirect('/signIn')
             
         return HttpResponseRedirect('/dashboard/')
+    
+#about us page View
+class AboutUs(View):
+    template_name = "about.html"
+
+    #get request
+    def get(self, request):
+        context = {}
+        return render(request, self.template_name, context)
+
+#History page View
+class History(View):
+    template_name = "history.html"
+
+    #get request
+    def get(self, request):
+        context = {}
+        return render(request, self.template_name, context)

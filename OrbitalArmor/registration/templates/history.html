@@ -1,1 +1,33 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/history.css' %}">
+{% endblock link %}
+
+
+
+{% block content %}
+    <div class="data">
+        <div class="paragraph">
+            <p>
+                The history of DDoS (Distributed Denial of Service) attacks traces back to the early days of the internet, 
+                where the concept emerged as a means of disrupting online services by flooding target systems with an overwhelming 
+                volume of traffic. One of the earliest recorded instances dates back to 1999 when the now-infamous "MafiaBoy" launched
+                 a series of DDoS attacks against major e-commerce sites, including Yahoo!, eBay, and Amazon. These attacks highlighted 
+                 the vulnerability of centralized internet infrastructure and spurred efforts to develop countermeasures. Over the years, 
+                 DDoS attacks have evolved in sophistication and scale, fueled by the proliferation of botnets and advancements in networking 
+                 technology. From politically motivated disruptions to extortion attempts and ideological clashes, DDoS attacks have become a 
+                 prevalent tool for cybercriminals and hacktivists alike, underscoring the critical importance of robust cybersecurity measures
+                in today's interconnected digital landscape.
+            </p>
+        </div>
+        <div class="image">
+
+        </div>
+
+    </div>    
+
+{% endblock content %}
+   
+

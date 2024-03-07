@@ -1,6 +1,32 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/about.css'%}">
+{% endblock link %}
 
 {% block content %}
+    <div class="info">
+        <div class="paragraph">
+            <p>
+                Welcome to Orbital Armor, the pioneering DDoS Attack Detection System engineered to safeguard your digital fortress against the 
+relentless onslaught of cyber threats. Embarking on our fourth-year project journey, our dedicated team of experts is committed to
+delivering unparalleled defense for your online infrastructure. With a keen understanding of the dynamic cyber landscape, Orbital Armor 
+leverages advanced machine learning algorithms and real-time network analysis to swiftly detect and neutralize DDoS attacks, ensuring 
+uninterrupted online operations for your business.
+            </p>
+            <p>
+                Orbital Armor is more than just a security solution; it's a testament to our unwavering commitment to fortifying the digital realm.
+ Grounded in extensive research and practical implementation, our system is meticulously crafted to offer intuitive protection without 
+ compromising on usability. Whether you're a burgeoning startup or a multinational enterprise, trust Orbital Armor to shield your network 
+ with precision and reliability. Join us as we pave the way for a safer digital future, one fortified by the impenetrable shield of Orbital 
+ Armor.
+            </p>
 
+        </div>
+        <div class="img">
+            <img src="{% static 'css/images/globe.png' %}" alt="image of hacking" width="500px" height="500px">
+        </div>
+    </div>
 {% endblock content %}
 

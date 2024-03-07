@@ -6,7 +6,7 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-image: url("images/C4NdKtRaQE9m8.gif");
+    background-image: url("images/bg.gif");
     background-repeat: no-repeat;
     background-size: 100% ;
 }
@@ -46,3 +46,4 @@ body{
     color: whitesmoke;
     border: 2px dashed whitesmoke;
 }
+

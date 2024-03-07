@@ -10,6 +10,8 @@ import os
 
 import psutil  # for info on network interface
 
+#global variables
+user = CustomUser.objects.all()
 
 # Create your views here.
 
@@ -33,7 +35,7 @@ class Dashboard(View):
         "label":self.label,
         }
         context['sizes']= sizes
-        fig = px.pie(data_frame=None, values=sizes, labels=self.label, title="Malicious to Bengin Traffic")
+        fig = px.pie(data_frame=None,color=['red', 'green'], values=sizes, labels=self.label, title="Malicious to Bengin Traffic")
         fig = fig.to_html()
         context['fig'] = fig
         return render(request, self.template_name, context)
@@ -66,8 +68,6 @@ class Alarm(View):
         fig = px.bar(data_frame=None,x = x, y = y, title="Number of Ip requests",labels={"x":"Ip address of senders", "y": " Number of requests"})
         fig = fig.to_html()
         context['fig'] = fig
-        osName = os.uname().sysname
-        context['os'] = osName
         protocolName = list(dict(self.data.Protocol.value_counts()).keys())
         protocolsValues = list(dict(self.data.Protocol.value_counts()).values())
         protocolsMaliciousName = list(dict(self.data[self.data.label == 1].Protocol.value_counts()).keys())
@@ -91,4 +91,27 @@ class Alarm(View):
 
         # duration = px.histogram(data_frame=None, )
         return render(request, self.template_name, context)
-        
+
+
+#view for user page...contain data of user and ability to log out
+#Username, operating system, company name, position in company, network interfaces, ip address,
+#log out button
+class UserAuthPage(View):
+    template_name = "user.html"
+    def get(self, request):
+        #get content for page
+        #get os name
+        context = {}
+        osName = os.uname().sysname
+        context['os'] = osName
+       #get network interfaces
+        interfaces = psutil.net_if_addrs()
+        networkInterfaces = list(psutil.net_if_addrs())
+        context['NIC'] = networkInterfaces
+        #get ip address from NIC info
+        IP = { }
+        for interface in networkInterfaces:
+            IP[interface]=interfaces[interface][0].address
+        IP= IP
+        context['IP'] = IP
+        return render(request, self.template_name, context)
