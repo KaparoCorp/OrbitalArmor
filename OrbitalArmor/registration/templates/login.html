@@ -8,15 +8,22 @@
     <title>Log in</title>
 </head>
 <body>
+    <div class="navBar">
+        <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
+        <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
+
+    </div>
     <div class="contatiner">
         <div class="formData">
             <form method="post">
                 {% csrf_token %}
-                <label for="username">USERNAME  <input name="username" type="text"></label>
-                <label for="password">PASSWORD <input name="password" type="password"></label>
-                <a href="">forgot password</a>
-                <button class='btn' type="submit">LOGIN</button>
-                
+                <label for="username">USERNAME : <input name="username" type="text"></label>
+                <label for="password">PASSWORD :<input name="password" type="password"></label>
+                <a href="">I forgot my password???</a>
+                <div class="buttons">
+                    <button class="btn" type="button"><a href="/register/">SIGN UP</a></button>
+                    <button class='btn' type="submit">LOG IN</button>
+                </div>
             </form>
         </div>
     </div>

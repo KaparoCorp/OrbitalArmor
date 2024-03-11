@@ -1,7 +1,28 @@
 {% extends "base1.html" %}
+{% load static %}
+
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+{% endblock headers %}
 
 {% block body %}
-  
+    <div class="userData">
+        <div class="img">
+            <img src="{% static 'css/images/avata.png'%}" alt="avata image">
+        </div>
+        <div class="data">
+                <label for="">Username :<span> </span> {{ user.username }} </label>
+                <label for="">Name :<span> </span>{{ user.first_name }} </label>
+                <label for="">Company Name :<span> </span>{{ user.company }} </label>
+                <label for="">Position :<span> </span>{{ user.position }} </label>
+                <label for="">Email :<span> </span>{{ user.email }} </label>
+                <label for="">Phone Number :<span> </span>{{ user.phone_number }} </label>
+                <label for="">Country :<span> </span>{{ user.country }} </label>
+                <label for="">Town :<span> </span>{{user.town }} </label>
+                <label for="">Interfaces :<span> </span>{{ IP|safe }}</label>
+        </div>
+    </div>
+    <button><a href="">sign out</a></button>
 {% endblock body %}
   
 

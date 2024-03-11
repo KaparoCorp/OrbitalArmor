@@ -1,4 +1,6 @@
 {% load static %}
+
+{% comment %} This is the base html for dashboard pages {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +11,6 @@
     {% block headers %}
      
     {% endblock headers %}
-
-
-
 </head>
 <body>
     
@@ -19,24 +18,34 @@
         <div >
             <nav>
                 <div class="navBar">
-                    <ul><li><a href="/">Home</a></li></ul>
-                    <ul><li><a href="/dashboard/">Performance</a></li></ul>
-                    <ul><li><a href="/alarm/">Attack Alarm</a></li></ul>
-                    <ul><li><a href="">Historical Data</a></li></ul>
-                    <ul><li><a href="">Errors</a></li></ul>
-                    <ul><li><a href="/user/">User Authentication & AccessControl</a></li></ul>
-                    <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Help</a></li></ul>
-                    <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Documentation</a></li></ul>
+                    <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
+                    <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
                 </div>
             </nav>
         </div>
 
-        <main>
-                <div>
-                    {% block body %}{% endblock body %}
-                </div>
-        </main>
+        {% comment %}  content of the page contains dashboard and container for main content {% endcomment %}
+        <div class="content">
+            <div class="dashboard">
+                <ul>
+                    <li>
+                        <a href="/dashboard/">Dashboard</a></li></ul>
+                            <ul><li><a href="/alarm/">Attack</a></li></ul>
+                            <ul><li><a href="">Machine Data</a></li></ul>
+                            <ul><li><a href="">Logs</a></li></ul>
+                            <ul><li><a href="/user/">User Authentication</a></li></ul>
+                            <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Help & Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+    <div class="mainContent">
+        <main>
+            {% block body %}{% endblock body %}
+        </main>      
+    </div>
+        
     <script src="{% static 'js/base.js' %}"></script>
 
 

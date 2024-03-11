@@ -10,7 +10,9 @@
 ul li{
     list-style: none;
 }
-
+.dashboard{
+    display: flex;
+}
 ul li a{
     list-style: none;
     text-decoration: none;
@@ -24,5 +26,9 @@ ul li a:hover{
     background-color: red;
     color: whitesmoke;
     border: 2px dashed whitesmoke;
+}
+
+.content{
+    display: flex;
 }
 

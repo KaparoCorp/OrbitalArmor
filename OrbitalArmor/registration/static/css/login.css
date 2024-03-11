@@ -6,6 +6,13 @@ body{
     background-size: 100% ;
 }
 
+.navBar{
+    display: flex;
+}
+.navBar ul li{
+    list-style-type: none;
+}
+
 form{
     display: flex;
     flex-direction: column;
@@ -33,7 +40,10 @@ input:hover{
     color: white;
     border: 2px dashed white;
 }
-
+.buttons{
+    display: flex;
+    flex-direction: row-reverse;
+}
 .btn{
     background-color: white;
     color:black;

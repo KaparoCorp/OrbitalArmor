@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block link %}
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        
     {% endblock link %}
     <title>  {% block title %}Orbital Armor{% endblock title %} </title>
 </head>
@@ -14,16 +15,20 @@
         <div class="nav">
                 <div class="center">
                     <div class="navBar">
-                        <ul><li><a href="/">Home</a></li></ul>
-                        <ul><li><a href="/about/">About us</a></li></ul>
-                        <ul><li><a href="/history/">History</a></li></ul>
+                        <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
+                        <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
+                        {% if user.is_authenticated %}
+                            <ul><li><a href="/dashboard/" class="home">Dashboard</a></li></ul>
+                        {% endif %}
+
                     </div>
                 </div> 
                 <div class="left">
                     <div class="navBar">
+                        <ul><li><a href="/about/">About us</a></li></ul>
+                        <ul><li><a href="/history/">History</a></li></ul>
                         <ul><li><a href="/register/">sign up</a></li></ul>
-                        <ul><li><a href="/signIn/">sign in</a></li></ul>
-                        <ul><li><a href="">Under Attack ?</a></li></ul>
+                        <ul><li><a href="/signIn/">log in</a></li></ul>
                     </div>
             </div>
         </div>

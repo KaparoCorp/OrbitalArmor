@@ -3,6 +3,7 @@ from django.views.generic import View, TemplateView
 from .forms import RegistrationForm
 from .models import CustomUser
 from django.contrib.auth import authenticate
+from django.contrib.auth import login
 
 # Create your views here.
 #Home/Landing page View
@@ -51,7 +52,7 @@ class SignIn(View):
             user = CustomUser.objects.get(username=user_name)
             User = authenticate(username=user_name, password=password)
             if User is not None:
-                pass
+                login(request,user=User)
             else:
                 print("User Failed")
                 return redirect('/signIn')

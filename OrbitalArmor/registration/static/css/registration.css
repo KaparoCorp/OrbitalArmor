@@ -6,6 +6,13 @@ body{
     background-repeat: no-repeat;
     background-size: 100% ;
 }
+.navBar{
+    display: flex;
+}
+.navBar ul li{
+    list-style-type: none;
+    
+}
 
 .content{
     position: absolute;
@@ -24,31 +31,18 @@ body{
 }
 
 /* this is the forms div */
-.form{
-    display: flex;
-}
-
-/* separation of left and right side form data */
-.right, .left{
+.formData{
     display: grid;
+    grid-gap: 1rem;
 
 }
 
-.left input{
-    border:2px solid black
+input{
+    border:2px solid black;
+    margin-left:2rem;
 }
 
-.left input:hover{
-    background-color: red;
-    color: white;
-    border-radius: 25px;
-}
-
-.right input{
-    border:2px solid black
-}
-
-.right input:hover{
+input:hover{
     background-color: red;
     color: white;
     border-radius: 25px;
@@ -78,7 +72,7 @@ select:hover{
 
 .btn:hover{
     background-color: red;
-    margin: 2px 3px
+    margin: 2px 3px;
     color: white;
     border-radius: 25px;
 }

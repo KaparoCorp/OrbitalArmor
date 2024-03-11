@@ -21,10 +21,11 @@ body{
 }
 .container .nav .left{
     position: relative;
-    left: 55%;
+    left: 45%;
 }
 .navBar{
     display: flex;
+    background-color: gray;
 } 
 
 .navBar ul li{
