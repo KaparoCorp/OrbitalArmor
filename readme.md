@@ -1,20 +1,6 @@
-# This is a Project about DOS and DDOS ATTACK detection system using machine learning 
+# This is a Project about DDOS ATTACK detection system using machine learning
 
-# Key words
-1. DOS - Denial Of Service Attack
-2. DDOS - Distributed Denial Of Service Attack
-3. Network Scanning-
-
-## Type of Dos Attacks 
-1. Smurf attack --> The attacker sends Internet Control Message Protocol broadcast packets to a number of hosts with a spoofed source Internet Protocol(IP) address that belongs to the target machine. The recipents of these spoofed packets will then respond, and the targeted host will be flooded with those responses.
-   
-2. SYN flood --> Occurs when an attacker sends a request to connect to the target server but does not complete th connection through what is known as a three-way handshake -- a mehtod used in a Transmission Control Protocol(TCP/IP) network  to create a connection between a local host/client and server. The incomplete handshke leaves the connected port in an occupied status and unavailable for further requests. An attacker will continue to send requests, saturating all open ports, so that legitimate users cannot connect. 
-   
-3. Ping of Death (ICMP Flood)
-4. Buffer Overflow Attack
-5. Teardrop Attack 
-
-### What is a denial of service attack?
+## What is a denial of service attack?
 DOS Attack--> Uses one internet connected device/network to flood the victims computer with malicious traffic so that when legitimate users are unable to access information systems, devices, or other network resources due to the actions of a malicious cyber threat actor.
 
 Services affected may include email, websites, online accounts(Banking), or other services that rely on the affected computer or network. Can cost an organization both time and money while their resources and services are inaccessible.
@@ -26,13 +12,14 @@ IoT devices use default passwords and do not have sound security postures, makin
 
 ### Tools for DOS Attacks
 1. Low Orbit Ion Cannon.
-2. Ping 
+2. High Orbit Ion Cannon.
    
    
 
 ### Tools for DDOS Attacks
 1. Botnet
-2. Cloud Computing power in Botnets
+2. Cloud Computing power in Botnets.
+3. IoT.
    
 ### Methods
 1. Application layer Attack
@@ -40,13 +27,28 @@ IoT devices use default passwords and do not have sound security postures, makin
 3. Fragmentation Attack
 4. Protocal Based Attack
    
-# This is a breakdown of how I made the DOS Attack Detection system using machine learning
+## Installation Method
+First thing is to make sure that your machine has all the requirments needed for the project and there found in the requirments.txt file.Requirements can be downloaded using python together with pip as follows :
 
-Requirements can be downloaded using the requirements.txt file and pip using python 
+``` python -m pip install -r requirements.txt ```
 
-``` python3 -m pip install -r requirements.txt ```
+After installing requirements you will need to make database migrations for the data.``` python manage.py makemigrations ``` . Then ``` python manage.py migrate ```. Finally run the application by changing directory to OrbitalArmor and use ``` python manage.py runserver ```.
 
-For this project I have chosen to use python 3.10.12 and can be installed form their website python.org, pandas ,sciPy, NumPy,Matplotlib and Tensorflow. 
+To access the web interface, head to your preffered browser and enter http://127.0.0.1:8000/ 
+
+## How to use
+The landing page is easy and interactive. The menu bar contains: 
+1. The logo -> logo of the earth and name of system
+2. About us -> about the developer and data.
+3. History -> shows data about ddos attacks in the web and news
+4. Sign up -> the registration page
+5. Log in  -> the log in page
+   
+Afer a user is able to register an account and log in, the user is redirected to the dashboard page which is the heart of the system.
+
+
+# System Design
+For this project I have chosen to use python 3.10.12 and can be installed form their website python.org, pandas ,sciPy, NumPy,Matplotlib and skitlearn.
 
 
 # Methods of ddos 
@@ -129,5 +131,13 @@ iptables -A port-scanning -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limi
 iptables -A port-scanning -j DROP
 
 # check out 
+https://machinelearningmastery.com/multiple-model-machine-learning/
+https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/
+https://machinelearningmastery.com/stacking-ensemble-machine-learning-with-python/
+https://realpython.com/getting-started-with-django-channels/
+https://trycatchdebug.net/news/1124453/reading-pcap-files-in-python
+https://support.metageek.com/hc/en-us/articles/115000910348-Splitting-PCAP-Files-with-tcpdump
+https://www.wireshark.org/docs/man-pages/tshark.html
+https://stackoverflow.com/questions/8092380/export-pcap-data-to-csv-timestamp-bytes-uplink-downlink-extra-info
 https://www.youtube.com/watch?v=uf8zJhnWALI&list=PLpbzVrYIIhHaLQEtiVtYhNlZnyV5mb5vp 
 

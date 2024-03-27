@@ -12,7 +12,7 @@
         </div>
         <div class="data">
                 <label for="">Username :<span> </span> {{ user.username }} </label>
-                <label for="">Name :<span> </span>{{ user.first_name }} </label>
+                <label for="">Name :<span> </span>{{ user.first_name }} <span></span> {{ user.last_name}}</label>
                 <label for="">Company Name :<span> </span>{{ user.company }} </label>
                 <label for="">Position :<span> </span>{{ user.position }} </label>
                 <label for="">Email :<span> </span>{{ user.email }} </label>
@@ -22,7 +22,7 @@
                 <label for="">Interfaces :<span> </span>{{ IP|safe }}</label>
         </div>
     </div>
-    <button><a href="">sign out</a></button>
+    <button><a href="/">sign out</a></button>
 {% endblock body %}
   
 

@@ -4,6 +4,9 @@ from .forms import RegistrationForm
 from .models import CustomUser
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.core.exceptions import ObjectDoesNotExist
+import django.contrib.messages  
+
 
 # Create your views here.
 #Home/Landing page View
@@ -49,14 +52,16 @@ class SignIn(View):
         if request.method == 'POST':
             user_name = request.POST.get('username')
             password = request.POST.get('password')
-            user = CustomUser.objects.get(username=user_name)
-            User = authenticate(username=user_name, password=password)
-            if User is not None:
-                login(request,user=User)
-            else:
-                print("User Failed")
-                return redirect('/signIn')
-            
+            try:
+                User = authenticate(username=user_name, password=password)
+                if User is not None:
+                    login(request,user=User)
+                else:
+                    
+                    context = {}
+                    return render(request, self.template_name, context)
+            except ObjectDoesNotExist : 
+                return redirect("/signIn/") 
         return HttpResponseRedirect('/dashboard/')
     
 #about us page View

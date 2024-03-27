@@ -133,3 +133,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGOUT_URL = '/'
+
+MEDIA_ROOT = '/NetworkTraffic/'
+
+
+
+#email settings
+EMAIL_HOST = ''
+EMAIL_PORT = ''
+EMAIL_USE_TLS = ''
+DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''

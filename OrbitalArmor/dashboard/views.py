@@ -1,15 +1,25 @@
-from django.shortcuts import render
+#django default modules
+from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
 from django_pandas.io import read_frame
 from dashboard.models import NetworkTraffic
+from django.contrib.auth import logout
+
+#django models
+from registration.models import CustomUser
+
+#django forms
+from dashboard.forms import UploadFileForm
+from dashboard.handler import handle_uploaded_file
+
+#other modules
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
-from registration.models import CustomUser
 import os
-from django.contrib.auth import logout
-
+from pathlib import Path
 import psutil  # for info on network interface
+import subprocess
 
 #global variables
 user = CustomUser.objects.all()
@@ -42,6 +52,7 @@ class Dashboard(View):
         context['fig'] = fig
         return render(request, self.template_name, context)
 
+# This is the Real Time data traffic
 class Alarm(View):
     # template for  alarm view for alerts and notification of ddos
     template_name = "alarm.html"
@@ -117,6 +128,36 @@ class UserAuthPage(View):
         IP = networkInterfaces
         IP= IP
         context['IP'] = IP
-        loger=logout(request)
-        context['logout'] = loger
+
         return render(request, self.template_name, context)
+
+
+#view for uploading files for machine to evaluate
+#works with pcap and csv files
+#uploaded files are in NetworkTraffic Folder and deleted after evaluation to save on space   
+class UploadFile(View):
+    teplate_name = "uploaded.html"
+    #GET method
+    def get(self, request):
+        form = UploadFileForm()
+
+        context = {"form" : form}
+
+
+        return render(request, self.teplate_name, context)
+    
+    #POST method
+    def post(self, request):
+        context ={}
+        #get file dataname
+        if request.method == 'POST':
+            file = request.FILES['networkFile'].name
+            
+            handle_uploaded_file(request.FILES['networkFile'])
+            return redirect('/results/')
+        return render(request, self.teplate_name, context)
+    
+class Results(View):
+    template_name = "results.html"
+    def get(self, request):
+        return render(request, self.template_name, context={})

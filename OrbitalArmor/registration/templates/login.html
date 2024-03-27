@@ -15,7 +15,11 @@
     </div>
     <div class="contatiner">
         <div class="formData">
+            <div class="error">
+                {{ form.errors }}
+            </div>
             <form method="post">
+        
                 {% csrf_token %}
                 <label for="username">USERNAME : <input name="username" type="text"></label>
                 <label for="password">PASSWORD :<input name="password" type="password"></label>

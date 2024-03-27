@@ -31,7 +31,7 @@
                     <li>
                         <a href="/dashboard/">Dashboard</a></li></ul>
                             <ul><li><a href="/alarm/">Attack</a></li></ul>
-                            <ul><li><a href="">Machine Data</a></li></ul>
+                            <ul><li><a href="/uploaded/">Upload Data</a></li></ul>
                             <ul><li><a href="">Logs</a></li></ul>
                             <ul><li><a href="/user/">User Authentication</a></li></ul>
                             <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Help & Documentation</a>
@@ -45,9 +45,10 @@
             {% block body %}{% endblock body %}
         </main>      
     </div>
-        
-    <script src="{% static 'js/base.js' %}"></script>
-
+     
+    {% block js %}
+        <script src="{% static 'js/base.js' %}"></script>
+    {% endblock js %}
 
 </body>
 </html>
