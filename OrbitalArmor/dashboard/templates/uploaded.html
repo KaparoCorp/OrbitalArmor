@@ -1,0 +1,26 @@
+{% extends "base1.html" %}
+{% load static %}
+{% block headers %}
+ <link rel="stylesheet" href="{% static 'css/uploaded.css' %}">
+{% endblock headers %}
+
+
+{% block body %}
+    <h1> Upload pcap or csv file of network traffic </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <hbox id="fileRead">
+            <p class="message"> {{ message }}</p>
+            <label for="networkFile">Upload File</label>
+            <input type="file" name="networkFile" id="file" accept="csv, pcap">
+        </hbox>
+        <button id="btn" type="submit">Access Traffic</button>
+        
+    </form>
+  
+
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/uploaded.js' %}"></script>
+{% endblock js %}

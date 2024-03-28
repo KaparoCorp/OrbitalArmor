@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 
 #django models
 from registration.models import CustomUser
+from dashboard.models import UploadedPcap
 
 #django forms
 from dashboard.forms import UploadFileForm
@@ -19,10 +20,12 @@ import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 import psutil  # for info on network interface
-import subprocess
-
-#global variables
-user = CustomUser.objects.all()
+ 
+#machine learning models
+import joblib
+import numpy as np
+from sklearn.preprocessing import StandardScaler,  OneHotEncoder
+from sklearn.compose import ColumnTransformer
 
 # Create your views here.
 
@@ -152,12 +155,53 @@ class UploadFile(View):
         #get file dataname
         if request.method == 'POST':
             file = request.FILES['networkFile'].name
+            request.session['fileName'] = file
             
             handle_uploaded_file(request.FILES['networkFile'])
             return redirect('/results/')
         return render(request, self.teplate_name, context)
-    
+
+
+#viwe for showing results of uploaded file data after machine learning evaluation 
+#uploaded file is evaluated using a presaved machine learning model
+#results are in a pdf format for easy analysis and printing    
 class Results(View):
     template_name = "results.html"
     def get(self, request):
+        file = request.session['fileName']
+        user = CustomUser.objects.get(username=request.user)
+        with open('dashboard/Models/ml1.sav', 'rb') as machineFile:
+            Model = joblib.load(machineFile)
+            path = Path('NetworkTraffic')/Path(file)
+            data = pd.read_csv(path)
+            data = data.dropna()
+            data1 = data
+            data1 = data1.drop(columns=["src_ip", "dst_ip","timestamp", "flow_duration", "src_port"])      
+            X_pred = Model.predict(data1)
+            data = data.assign(Label = X_pred)
+            for i in data:
+                traffic = UploadedPcap(
+                    user=user,
+                    src_ip= data['src_ip'],
+                    dst_ip =data['dst_ip'],
+                    src_port=data['src_port'], 
+                    dst_port= data['dst_port'],
+                    protocol= data['protocol'],
+                    flows_bytes= data['flow_byts_s'], 
+                    flow_pkts_s =data['flow_pkts_s'],
+                    active_max = data['active_max'],
+                    idle_max = data['idle_max'],
+                    down_up_ratio= data['down_up_ratio'],
+                    pkt_size_avg = data['pkt_size_avg'],
+                    pkt_len_max = data['pkt_len_max'],
+                    fwd_pkt_len_max = data['fwd_pkt_len_max'],
+                    bwd_pkt_len_max = data['bwd_pkt_len_max'],
+                    tot_fwd_pkts = data['tot_fwd_pkts'],
+                    tot_bwd_pkts = data['tot_bwd_pkts'],
+                    totlen_fwd_pkts = data['totlen_fwd_pkts'],
+                    totlen_bwd_pkts = data['totlen_bwd_pkts'],
+                    Label = data['Label'])
+                traffic.save()
+            
+
         return render(request, self.template_name, context={})
