@@ -28,31 +28,14 @@ from sklearn.preprocessing import StandardScaler,  OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
 # Create your views here.
-
+#landing page view
 class Dashboard(View):
     #template for dashboard landing page view 
     template_name = "dashboard.html"
-      #Retrieve all NetworkTraffic data saved
-    queryset = NetworkTraffic.objects.all()
-    
-    #convert the querySet to a panas Dataframe
-    networkTraffic_df = read_frame(queryset)
-    networkTraffic_df = networkTraffic_df
-    data = networkTraffic_df.dropna()
-    y = data.label
-    label = ['Malicious', 'Bengin']
 
+    #get dashboard
     def get(self, request):
-        x = dict(self.data.label.value_counts())[0]
-        y = dict(self.data.label.value_counts())[1]
-        sizes = [x,y]
-        context = {
-        "label":self.label,
-        }
-        context['sizes']= sizes
-        fig = px.pie(data_frame=None, values=sizes, labels=self.label, title="Malicious to Bengin Traffic")
-        fig = fig.to_html()
-        context['fig'] = fig
+        context ={}
         return render(request, self.template_name, context)
 
 # This is the Real Time data traffic
@@ -67,10 +50,22 @@ class Alarm(View):
     networkTraffic_df = read_frame(queryset)
     networkTraffic_df = networkTraffic_df.dropna()
     data = networkTraffic_df
+    label = ['Malicious', 'Bengin']
     y = data.label
     
     def get(self, request):
         context = {}
+        #malicous and bengin data
+        x = dict(self.data.label.value_counts())[0]
+        y = dict(self.data.label.value_counts())[1]
+        sizes = [x,y]
+        context = {
+        "label":self.label,
+        }
+        context['sizes']= sizes
+        fig = px.pie(data_frame=None, values=sizes, labels=self.label, title="Malicious to Bengin Traffic")
+        chart = fig.to_html()
+        context['chart'] = chart
         #ip graph data and bar graph
         x = list(dict(self.data[self.data.label == 1].src.value_counts()).keys())
         y = list(dict(self.data[self.data.label == 1].src.value_counts()).values())
@@ -134,6 +129,10 @@ class UserAuthPage(View):
 
         return render(request, self.template_name, context)
 
+    def post(self, request):
+        if request.POST:
+            logout(request)
+            return redirect('/')
 
 #view for uploading files for machine to evaluate
 #works with pcap and csv files
@@ -168,40 +167,83 @@ class UploadFile(View):
 class Results(View):
     template_name = "results.html"
     def get(self, request):
-        file = request.session['fileName']
+        file = request.session['fileName'] #get filename uploaded
+        context = {}
         user = CustomUser.objects.get(username=request.user)
+        context['filename'] = file
+        #use machine learning model on uploaded file
         with open('dashboard/Models/ml1.sav', 'rb') as machineFile:
-            Model = joblib.load(machineFile)
-            path = Path('NetworkTraffic')/Path(file)
+            Model = joblib.load(machineFile) #machine model
+            path = Path('NetworkTraffic')/Path(file) 
             data = pd.read_csv(path)
-            data = data.dropna()
             data1 = data
             data1 = data1.drop(columns=["src_ip", "dst_ip","timestamp", "flow_duration", "src_port"])      
-            X_pred = Model.predict(data1)
-            data = data.assign(Label = X_pred)
-            for i in data:
+            X_pred = Model.predict(data1) #predicted label for uploaded file
+            data = data.assign(Label = X_pred) #adding label column to dataset of uploaded file
+            
+            #save data of uploaded file to database
+            for i in range(len(data)):
                 traffic = UploadedPcap(
                     user=user,
-                    src_ip= data['src_ip'],
-                    dst_ip =data['dst_ip'],
-                    src_port=data['src_port'], 
-                    dst_port= data['dst_port'],
-                    protocol= data['protocol'],
-                    flows_bytes= data['flow_byts_s'], 
-                    flow_pkts_s =data['flow_pkts_s'],
-                    active_max = data['active_max'],
-                    idle_max = data['idle_max'],
-                    down_up_ratio= data['down_up_ratio'],
-                    pkt_size_avg = data['pkt_size_avg'],
-                    pkt_len_max = data['pkt_len_max'],
-                    fwd_pkt_len_max = data['fwd_pkt_len_max'],
-                    bwd_pkt_len_max = data['bwd_pkt_len_max'],
-                    tot_fwd_pkts = data['tot_fwd_pkts'],
-                    tot_bwd_pkts = data['tot_bwd_pkts'],
-                    totlen_fwd_pkts = data['totlen_fwd_pkts'],
-                    totlen_bwd_pkts = data['totlen_bwd_pkts'],
-                    Label = data['Label'])
+                    src_ip= data.loc[i,'src_ip'],
+                    dst_ip =data.loc[i,'dst_ip'],
+                    src_port=data.loc[i,'src_port'], 
+                    dst_port= data.loc[i,'dst_port'],
+                    protocol= data.loc[i,'protocol'],
+                    flowsbytes= data.loc[i,'flow_byts_s'], 
+                    flow_pkts_s =data.loc[i,'flow_pkts_s'],
+                    active_max = data.loc[i,'active_max'],
+                    idle_max = data.loc[i,'idle_max'],
+                    down_up_ratio= data.loc[i,'down_up_ratio'],
+                    pkt_size_avg = data.loc[i,'pkt_size_avg'],
+                    pkt_len_max = data.loc[i,'pkt_len_max'],
+                    fwd_pkt_len_max = data.loc[i,'fwd_pkt_len_max'],
+                    bwd_pkt_len_max = data.loc[i,'bwd_pkt_len_max'],
+                    tot_fwd_pkts = data.loc[i,'tot_fwd_pkts'],
+                    tot_bwd_pkts = data.loc[i,'tot_bwd_pkts'],
+                    totlen_fwd_pkts = data.loc[i,'totlen_fwd_pkts'],
+                    totlen_bwd_pkts = data.loc[i,'totlen_bwd_pkts'],
+                    Label = data.loc[i,'Label'])
                 traffic.save()
-            
 
-        return render(request, self.template_name, context={})
+        #data retrival from database 
+        queryset = UploadedPcap.objects.all()
+        UploadedPcap_df = read_frame(queryset)
+        UploadedPcap_df = UploadedPcap.dropna()
+        data = UploadedPcap_df
+
+        x = list(dict(self.data[self.data.label == 1].src.value_counts()).keys())
+        y = list(dict(self.data[self.data.label == 1].src.value_counts()).values())
+        data = [x, y]
+        fig = px.bar(data_frame=None,x = x, y = y, title="Number of requests",labels={"x":"Ip address of senders", "y": " Number of requests"})
+        fig = fig.to_html()
+        context['fig'] = fig
+
+        #protocols data and bar graph
+        protocolName = list(dict(self.data.Protocol.value_counts()).keys())
+        protocolsValues = list(dict(self.data.Protocol.value_counts()).values())
+        protocolsMaliciousName = list(dict(self.data[self.data.label == 1].Protocol.value_counts()).keys())
+        protocolsMaliciousValue = dict(self.data[self.data.label == 1].Protocol.value_counts()).values()
+        figProtocol = px.bar(data_frame=None, x=protocolName, y = protocolsValues, title="Protocols ", labels={"x": "Protocol Name", "y": " Request count"})
+        figProtocol = figProtocol.to_html()
+        context['figProtocol'] = figProtocol
+
+        #duration data and bar graph
+        durationInfo = self.data.dur
+        durationHist = px.line(data_frame=None, x=durationInfo, title="Duration histogram", labels={"x":"Duration in seconds", "y":"count in Bytes"})
+        durationHist = durationHist.to_html()
+        context['durationHist'] = durationHist
+
+        #transmission data and histogram
+        transmissionInfo = self.data.tx_bytes
+        transmissionHist = px.histogram(data_frame=None, x = transmissionInfo, title="Transmittion Bytes histogram", labels={"x":"Duration in seconds","y":"count in Bytes"})
+        transmissionHist = transmissionHist.to_html()
+        context["transmissionHist"] = transmissionHist 
+        
+        #kbps data and histogram graph
+        kbpsInfo = self.data.tx_kbps
+        kbpsHist = px.histogram(data_frame=None, x = kbpsInfo, title="Rate trassmitted in Kbps", labels={"x":"Duration in seconds ", "y":"count in kbp"})
+        kbpsHist = kbpsHist.to_html()
+        context['kbpsHist'] = kbpsHist
+
+        return render(request, self.template_name, context)

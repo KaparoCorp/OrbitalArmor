@@ -1,5 +1,6 @@
 {% extends "base1.html" %}
 {% load static %}
+
 {% block headers %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %} "> 
 {% endblock headers %}
@@ -11,9 +12,8 @@
             <p>This is the ratio of Malicious traffic to Bengin traffic as studied and classified by the model that was trained and tested on datasets from ICID2019DDOS and many more find more detail in documentation...</p>
             <p> The </p>
         </div>
-
         <div class="diagram">
-            {{ fig|safe }}
+            
         </div>
     </div>
 {% endblock body %}

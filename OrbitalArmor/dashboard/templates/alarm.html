@@ -8,6 +8,7 @@
 {% block body %}
 <div class="graphs">
     <p class="title">ATTACK ALERTS</p>
+    {{ chart|safe }}
     {{ fig|safe }}
     {{ figProtocol|safe }}
     {{ durationHist|safe }}
@@ -16,8 +17,6 @@
 
 </div>
 {% endblock body %}
-
-
 
 
 

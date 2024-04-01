@@ -9,46 +9,39 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/base1.css' %} "> 
     {% block headers %}
-     
     {% endblock headers %}
 </head>
 <body>
-    
     <div class="container">
         <div >
             <nav>
-                <div class="navBar">
+                <div class="navBar left">
                     <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
-                    <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
+                    <ul class='mid'><li><a href="/" class="home">Orbital Armor</a></li></ul>
+                </div>
+                <div class="navBar right mid">
+                    <ul><li><a href="/dashboard/">Dashboard</a></li></ul>
+                    <ul><li><a href="/alarm/">Attack</a></li></ul>
+                    <ul><li><a href="/uploaded/">Upload Data</a></li></ul>
+                    <ul><li><a href="">Logs</a></li></ul>
+                    <ul><li><a href="/user/">User Authentication</a></li></ul>
+                    <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Help</a></li></ul>
+                    <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Documentation</a></li></ul>
                 </div>
             </nav>
         </div>
-
         {% comment %}  content of the page contains dashboard and container for main content {% endcomment %}
         <div class="content">
-            <div class="dashboard">
-                <ul>
-                    <li>
-                        <a href="/dashboard/">Dashboard</a></li></ul>
-                            <ul><li><a href="/alarm/">Attack</a></li></ul>
-                            <ul><li><a href="/uploaded/">Upload Data</a></li></ul>
-                            <ul><li><a href="">Logs</a></li></ul>
-                            <ul><li><a href="/user/">User Authentication</a></li></ul>
-                            <ul><li><a href="https://github.com/KaparoCorp/OrbitalArmor">Help & Documentation</a>
-                    </li>
-                </ul>
+            
+            <div class="mainContent">
+                <main>
+                    {% block body %}
+                    {% endblock body %}
+                </main>      
             </div>
         </div>
-    </div>
-    <div class="mainContent">
-        <main>
-            {% block body %}{% endblock body %}
-        </main>      
-    </div>
-     
     {% block js %}
         <script src="{% static 'js/base.js' %}"></script>
     {% endblock js %}
-
 </body>
 </html>
