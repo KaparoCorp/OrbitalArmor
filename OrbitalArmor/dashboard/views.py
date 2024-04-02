@@ -114,9 +114,6 @@ class UserAuthPage(View):
         #get content for page
         #get os name
         context = {}
-        osName = os.uname().sysname
-        context['os'] = osName
-
        #get network interfaces
         interfaces = psutil.net_if_addrs()
         networkInterfaces = list(psutil.net_if_addrs())

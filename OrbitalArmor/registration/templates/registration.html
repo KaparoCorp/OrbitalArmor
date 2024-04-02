@@ -5,68 +5,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    {% block links %}
+        <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    {% endblock links %}
     <title>Registration</title>
 </head>
 <body>
     <div class="navBar">
-        <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
-        <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
+        <ul><li><a href="/" class="logo"><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></a></li></ul>
+        <ul class='mid'><li><a href="/" class="home">Orbital Armor</a></li></ul>
 
-    </div>    
-    <div class="container">
-            <!-- User registration form -->
-                <form method="POST">
-                    
-                    <!-- separate left data and right data -->
-                    <div class="content">
-                        <div class="error">
-                            {{ form.errors }}
+    </div> 
+    {% block main %}
+            <div class="container">
+                <!-- User registration form -->
+                    <form method="POST">
+                        <!-- separate left data and right data -->
+                        <div class="content">
+                            <div class="error">
+                                {{ form.errors }}
+                            </div>
+                            <div class="form">
+                                {% csrf_token %}
+                                <div class="formData">
+                                    <label for="username">
+                                        USERNAME:{{ form.username }}
+                                    </label>
+                                    <label for="frist_name">
+                                        FIRST NAME:{{ form.first_name }}
+                                    </label>
+                                    <label for="frist_name">
+                                        SECOND NAME:{{ form.last_name }}
+                                    </label>
+                                    <label for="email">
+                                        EMAIL ADDRESS:{{ form.email }}
+                                    </label>
+                                    <label for="phone_number">
+                                        PHONE NUMBER: {{ form.phone_number }}
+                                    </label>
+                                    <label for="password">
+                                        PASSWORD: {{ form.password1 }} 
+                                    </label>
+                                    <label for="password_confirm">
+                                        PASSWORD CONFIRM:{{ form.password2}} 
+                                    </label>
+                                    <label for="town">
+                                        TOWN:{{ form.town }}
+                                    </label>
+                                    <label for="companyName">
+                                        COMPANY NAME:{{ form.company }}
+                                    </label>
+                                    <label for="position">
+                                        POSITION: {{ form.position }}
+                                    </label>
+                                    <label for="terms&conditions">
+                                        <a href="">confirm terms and conditions</a>
+                                        {{form.terms }}
+                                </div>
+                            
+                            </div>
+                            <button class="btn" type="button">
+                                <a href="/signIn/">sign in</a>
+                            </button>
+                            <button class="btn" type="submit">sign up</button>        
                         </div>
-                    <div class="form">
-                        {% csrf_token %}
-                        <div class="formData">
-                            <label for="username">
-                                USERNAME:{{ form.username }}
-                            </label>
-                            <label for="frist_name">
-                                FIRST NAME:{{ form.first_name }}
-                            </label>
-                            <label for="frist_name">
-                                SECOND NAME:{{ form.last_name }}
-                            </label>
-                            <label for="email">
-                                EMAIL ADDRESS:{{ form.email }}
-                            </label>
-                            <label for="phone_number">
-                                PHONE NUMBER: {{ form.phone_number }}
-                            </label>
-                            <label for="password">
-                                PASSWORD: {{ form.password1 }} 
-                            </label>
-                            <label for="password_confirm">
-                                PASSWORD CONFIRM:{{ form.password2}} 
-                            </label>
-                            <label for="">
-                                TOWN:{{ form.town }}
-                            </label>
-                            <label for="">
-                                COMPANY NAME:{{ form.company }}
-                            </label>
-                            <label for="">
-                                POSITION: {{ form.position }}
-                            </label>
-                            <label for="">
-                                <a href="">confirm terms and conditions</a>
-                                {{form.terms }}
-                        </div>
-                        
-                    </div>
-                    <button class="btn" type="button"><a href="/signIn/">log in</a></button>
-                    <button class="btn" type="submit">sign up</button>        
-                </div>
-                </form>
-    </div>
-    <script src="{% static 'js/registration.js' %}"></script>
+                    </form>
+            </div>
+            <script src="{% static 'js/registration.js' %}"></script>
+    {% endblock main %}
 </body>
 </html>

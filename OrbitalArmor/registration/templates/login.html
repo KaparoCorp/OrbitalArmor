@@ -1,35 +1,32 @@
+{% extends "registration.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/login.css'%}">
-    <title>Log in</title>
-</head>
-<body>
-    <div class="navBar">
-        <ul><li><img class='logo' src={%static "css/images/globe.png"%} width="80px" height="80px"></li></ul>
-        <ul><li><a href="/" class="home">Orbital Armor</a></li></ul>
 
-    </div>
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock links %}
+
+{% block main %}
     <div class="contatiner">
         <div class="formData">
             <div class="error">
                 {{ form.errors }}
             </div>
             <form method="post">
-        
                 {% csrf_token %}
-                <label for="username">USERNAME : <input name="username" type="text"></label>
-                <label for="password">PASSWORD :<input name="password" type="password"></label>
+                <label for="username">
+                    USERNAME :  <input name="username" type="text">
+                </label>
+                <label for="password">
+                    PASSWORD :  <input name="password" type="password">
+                </label>
                 <a href="">I forgot my password???</a>
                 <div class="buttons">
-                    <button class="btn" type="button"><a href="/register/">SIGN UP</a></button>
-                    <button class='btn' type="submit">LOG IN</button>
+                    <button class="btn" type="button">
+                        <a href="/register/">SIGN UP</a>
+                    </button>
+                    <button class='btn' type="submit">SIGN IN</button>
                 </div>
             </form>
         </div>
     </div>
-</body>
-</html>
+{% endblock main %}

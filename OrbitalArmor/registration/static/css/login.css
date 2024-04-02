@@ -3,14 +3,56 @@ body{
     width: 100vw;
     background-image: url("images/ThermoNuclearWar[1].gif");
     background-repeat: no-repeat;
-    background-size: 100% ;
+    background-size: cover;
 }
 
 .navBar{
     display: flex;
+    background-color: grey;
+    width: fit-content;
 }
+
 .navBar ul li{
     list-style-type: none;
+}
+
+.navBar .mid{
+    padding-top: 2rem;
+}
+
+.navBar ul li{
+    list-style-type: none;   
+}
+
+.navBar ul li a{
+    list-style:none;
+    text-decoration: none;
+    color: black;
+    background-color: whitesmoke;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    border: 2px solid red;
+}
+
+.navBar ul li a:hover{
+    background-color: red;
+    color: whitesmoke;
+    border: 2px dashed whitesmoke;
+}
+
+.navBar ul li .logo{
+    list-style: none;
+    text-decoration: none;
+    color: none;
+    padding: none;
+    background-color: gray ;
+    text-transform: uppercase;
+    border:none;
+}
+
+.navBar ul li .logo:hover{
+    background-color: gray;
+    border: none;
 }
 
 form{
@@ -18,14 +60,16 @@ form{
     flex-direction: column;
     position: absolute;
     background-color: white;
+    padding: 2rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     width: 25%;
-    padding: .5rem;
     margin: .5rem;
     border: 2px solid black
 }
+
+
 
 form:hover{
     border: 3px dashed red;
@@ -38,23 +82,35 @@ input{
 input:hover{
     background-color: red;
     color: white;
-    border: 2px dashed white;
+    border: 2px dashed red;
 }
+
 .buttons{
     display: flex;
     flex-direction: row-reverse;
 }
+
 .btn{
     background-color: white;
     color:black;
     margin:2px;
     padding: .5rem 1.5rem;
+    border-color: black;
     border-radius: 25px;
 }
 
 .btn:hover{
     background-color:red;
     color:white;
+    padding: 1rem 2rem;
     border: 2px dashed white;
 }
 
+.btn a{
+    color : black;
+    text-decoration: none;
+}
+
+.btn a:hover{
+    color : white;
+}

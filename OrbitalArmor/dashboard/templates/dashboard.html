@@ -8,12 +8,47 @@
 {% block body %}
     <div class="content">
         <div class="Info">
-            <h1>Performance ratio</h1>
-            <p>This is the ratio of Malicious traffic to Bengin traffic as studied and classified by the model that was trained and tested on datasets from ICID2019DDOS and many more find more detail in documentation...</p>
-            <p> The </p>
-        </div>
-        <div class="diagram">
-            
+            <h1>Information about Dashboard</h1>
+            <p>
+                This is the dashboard area of the system. The dashboard contains a page to upload file,
+                attach interface,see logs data,manage user Authentication, seek help and view documentation 
+                about the system.The upload file page lets a user upload file for network analysis.
+            </p>
+            <h2>upload file</h2>
+            <p>
+                This page allows the user to upload a file(pcap, csv and pcapng).After user uploads file
+                the data is passed through multiple machine learning models and a label is assigned to them.
+                After the label is assigned a file is created and saved to the database. The saved file is also used
+                for further machine learning to train the model for cutomized networks.
+            </p>
+            <h2>attach interface</h2>
+            <p> 
+                This page allows the user to attach a network interface for real time network analysis.For the system
+                to capture realtime traffic it requres the user to give it root/administrative previlages. It captures
+                realtime network packet and passes them through the machine learning model and then labels the packets 
+                and saves data. The results of the fiel are the saved to the database for further machine learning and to 
+                enable user to customize the system according to their internal network stucture.
+            </p>
+            <h2>logs</h2>
+            <p>
+                This page shows all the system logs and allows the user to see logs and for maintainace and see machine
+                learning models accuracy and system information.
+            </p>
+            <h2>user Auth</h2>
+            <p>
+                This page show user  information and user details. The user is also able to change details accordingly.
+                User information includes username, firstname, lastname, email, phonenumber, town, company name and their
+                position in their company. User can also logout from here.
+            </p>
+            <h2>help</h2>
+            <p>
+                This page redirects the user to my github account to the help section. Where the user is able to 
+                fill up a form and ask for help. The frequently asked questions are answered here.
+            </p>
+            <h2>documentation</h2>
+            <p>
+                This page allows the user to get documentation about the sytem.
+            </p>
         </div>
     </div>
 {% endblock body %}
