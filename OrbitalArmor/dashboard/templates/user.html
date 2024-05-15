@@ -7,22 +7,53 @@
 
 {% block body %}
     <div class="userData">
-        <div class="img">
-            <img src="{% static 'css/images/avata.png'%}" alt="avata image">
+        <label for="username">
+            <h2>username :{{ user.username }} </h2>
+        </label>
+        
+        <div class="id">
+            <div class="img">
+                <img src="{% static 'css/images/avata.png'%}" alt="avata image">
+            </div>
+            <div class="data">
+                <div class="leftid">
+                    <label for="name">
+                        Name :<span> </span>{{ user.first_name }}</label>
+                    <label for="email">
+                        Email :<span> </span>{{ user.email }} 
+                    </label>
+                    <label for="country">
+                        Country :<span> </span>{{ user.country }} 
+                    </label>
+                    <label for="companyNmae">
+                        Company Name :<span> </span>{{ user.company }} 
+                    </label>
+                </div>
+                <div class="rightid">
+                    <label for="position">
+                        Second Name :<span> </span>{{ user.last_name }} 
+                    </label>
+                    <label for="phoneNumber">
+                        Phone Number :<span> </span>{{ user.phone_number }} 
+                    </label>
+                    <label for="town">
+                        Town :<span> </span>{{user.town }} 
+                    </label>
+                    <label for="position">
+                        Position :<span> </span>{{ user.position }} 
+                    </label>
+                </div>  
+                  <form method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                  </form>
+                
+            </div>
+            
         </div>
-        <div class="data">
-                <label for="">Username :<span> </span> {{ user.username }} </label>
-                <label for="">Name :<span> </span>{{ user.first_name }} <span></span> {{ user.last_name}}</label>
-                <label for="">Company Name :<span> </span>{{ user.company }} </label>
-                <label for="">Position :<span> </span>{{ user.position }} </label>
-                <label for="">Email :<span> </span>{{ user.email }} </label>
-                <label for="">Phone Number :<span> </span>{{ user.phone_number }} </label>
-                <label for="">Country :<span> </span>{{ user.country }} </label>
-                <label for="">Town :<span> </span>{{user.town }} </label>
-                <label for="">Interfaces :<span> </span>{{ IP|safe }}</label>
-        </div>
+        
     </div>
-    <button><a href="/">sign out</a></button>
+   
 {% endblock body %}
   
 

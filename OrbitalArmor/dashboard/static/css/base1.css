@@ -1,22 +1,43 @@
 *{
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 
 }
 
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+}
+
 .navBar{
     display: flex;
+    width: fit-content;
 }
+.mid{
+    padding-top: 2rem;
+}
+
+
 ul li{
     list-style: none;
 }
+
 .dashboard{
     display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 25%;
+}
+.dashboard ul{
+    padding: 1rem;
 }
 ul li a{
     list-style: none;
     text-decoration: none;
     color:black;
+    display: block;
     background-color: whitesmoke;
     text-transform: uppercase;
     border: 2px solid red;
@@ -28,8 +49,5 @@ ul li a:hover{
     border: 2px dashed whitesmoke;
 }
 
-.content{
-    display: flex;
-    justify-content: center;
-}
+
 

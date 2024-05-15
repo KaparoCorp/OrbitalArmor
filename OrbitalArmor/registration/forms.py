@@ -10,7 +10,7 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         widgets = { 'country': CountrySelectWidget}
-        fields = ['username','first_name', 'last_name', 'email', 'phone_number', 'password1', 'country', 'town', 'company', 'position', 'terms']
+        fields = ['username','first_name', 'last_name', 'email', 'phone_number', 'password1', 'town', 'company', 'position', 'terms']
 
         def cleanData(self):
             cleaned_data = super(RegistrationForm,self).clean()

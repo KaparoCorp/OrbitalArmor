@@ -6,18 +6,25 @@
 
 
 {% block body %}
-    <h1> Upload pcap or csv file of network traffic </h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <hbox id="fileRead">
-            <p class="message"> {{ message }}</p>
-            <label for="networkFile">Upload File</label>
-            <input type="file" name="networkFile" id="file" accept="csv, pcap">
-        </hbox>
-        <button id="btn" type="submit">Access Traffic</button>
-        
-    </form>
-  
+    <div class="form">
+        <h1> Upload file for analysis</h1>
+       
+        <form method="post" enctype="multipart/form-data">
+            <p>
+                This page allows user to upload a file for analysis.File can be of type pcap(network packet capture), 
+                csv(comma separated file) and pcapng(packet capture).The file is then passed through by a machine learning
+                model which label the packets accordingly and save them to the database.
+            </p>
+            {% csrf_token %}
+            <hbox id="fileRead">
+                <p class="message"> {{ message }}</p>
+                <label for="networkFile">Upload File</label>
+                <input type="file" name="networkFile" id="file" accept="csv, pcap">
+                <button id="btn" type="submit">Access Traffic</button>
+            </hbox>
+        </form>
+    </div>
+   
 
 {% endblock body %}
 
